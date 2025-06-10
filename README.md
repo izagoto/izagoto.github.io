@@ -1,7 +1,7 @@
 # Personal Portfolio 🔥
-<!-- > https://rajaprerak.github.io/
+https://izagoto.github.io/
 
-:star: Star me on GitHub — it helps!
+<!-- :star: Star me on GitHub — it helps!
 
 [![Maintenance](https://img.shields.io/badge/maintained-yes-green.svg)](https://github.com/rajaprerak/rajaprerak.github.io/commits/master)
 [![Website shields.io](https://img.shields.io/badge/website-up-yellow)](http://rajaprerak.github.io/)
