@@ -9,12 +9,12 @@ https://izagoto.github.io/
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) -->
 
 ### Website Preview
-#### Home Page
-<img src="website_images/HomePage.gif" width="900">
-
 
 #### About Page
 <img src="website_images/AboutPage.png" width="900">
+
+#### skills Page
+<img src="website_images/SkillsPage.png" width="900">
 
 
 <!-- #### Projects Page
