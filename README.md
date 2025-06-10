@@ -17,8 +17,8 @@
 <img src="website_images/AboutPage.png" width="900">
 
 
-#### Projects Page
-<img src="website_images/ProjectPage.png" width="900">
+<!-- #### Projects Page
+<img src="website_images/ProjectPage.png" width="900"> -->
   
 
 
