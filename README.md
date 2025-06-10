@@ -41,11 +41,11 @@
 ✔️ About\
 ✔️ Interests\
 ✔️ Education\
-✔️ Online Certification\
+<!-- ✔️ Online Certification\
 ✔️ Experience\
-✔️ Projects \
+✔️ Projects \ -->
 ✔️ Skills \
-✔️ Resume\
+<!-- ✔️ Resume\ -->
 ✔️ Contact Info
 
 
