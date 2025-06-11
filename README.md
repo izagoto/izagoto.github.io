@@ -16,9 +16,6 @@ https://izagoto.github.io/
 #### skills Page
 <img src="website_images/SkillsPage.png" width="900">
 
-
-<!-- #### Projects Page
-<img src="website_images/ProjectPage.png" width="900"> -->
   
 
 
