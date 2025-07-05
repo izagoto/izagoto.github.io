@@ -11,7 +11,19 @@ A modern, responsive portfolio website showcasing my skills as a Backend Enginee
 ## 🚀 Live Demo
 **Visit:** [https://izagoto.github.io/](https://izagoto.github.io/)
 
+### Website Preview
 
+#### Home Page
+<img src="website_images/HomePage.png" width="900" alt="Home Page">
+
+#### About Page
+<img src="website_images/AboutPage.png" width="900" alt="About Page">
+
+#### Skills Page
+<img src="website_images/SkillsPage.png" width="900" alt="Skills Page">
+
+#### Contact Page
+<img src="website_images/ContactPage.png" width="900" alt="Contact Page">
 
 ## ✨ Features
 - ⚡️ **Fully Responsive** - Works perfectly on all devices
