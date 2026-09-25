@@ -1,24 +1,38 @@
 # Dependencies
-node_modules
-.pnpm-store
+node_modules/
+.pnpm-store/
+.bun/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+.pnp.*
 
 # Build output
-dist
-dist-ssr
-build
-coverage
-.vite
-.vercel
-.netlify
-.cache
+dist/
+dist-ssr/
+build/
+coverage/
+.vite/
+.vercel/
+.netlify/
+.cache/
+.parcel-cache/
+.output/
+
+# TypeScript / tooling cache
+*.tsbuildinfo
+.eslintcache
 
 # Environment files
 .env
 .env.*
 !.env.example
+!.env.*.example
 
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -26,10 +40,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Testing / preview artifacts
+coverage/
+playwright-report/
+test-results/
+*.lcov
+
 # Local editor settings
 .vscode/*
 !.vscode/extensions.json
-.idea
+!.vscode/settings.json
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
@@ -40,4 +61,7 @@ lerna-debug.log*
 .DS_Store
 Thumbs.db
 *.local
+
+# Misc
+vite.config.*.timestamp-*
 
