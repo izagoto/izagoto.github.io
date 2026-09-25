@@ -4,8 +4,8 @@ import { fileURLToPath, URL } from "node:url";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  // UBAH DARI "./" MENJADI NAMA REPO ANDA TERBUNGKUS SLASH:
-  base: "/personal-portfolio/",
+  // Wajib menggunakan "/" karena di-deploy ke root domain (izagoto.github.io)
+  base: "/",
   server: {
     host: "::",
     port: 8080,
