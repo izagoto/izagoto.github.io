@@ -3,10 +3,9 @@ import react from "@vitejs/plugin-react-swc";
 import { fileURLToPath, URL } from "node:url";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // Sesuaikan dengan nama repositori atau buat relative path './'
-  base: "./",
+  // UBAH DARI "./" MENJADI NAMA REPO ANDA TERBUNGKUS SLASH:
+  base: "/personal-portfolio/",
   server: {
     host: "::",
     port: 8080,
