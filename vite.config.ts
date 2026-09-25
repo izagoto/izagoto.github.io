@@ -4,8 +4,8 @@ import { fileURLToPath, URL } from "node:url";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  // Wajib menggunakan "/" karena di-deploy ke root domain (izagoto.github.io)
-  base: "/",
+  // Gunakan path relatif agar aman di GitHub Pages dan root domain
+  base: "./",
   server: {
     host: "::",
     port: 8080,
