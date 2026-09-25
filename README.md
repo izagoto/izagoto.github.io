@@ -1,22 +1,41 @@
-<!-- GitHub stats (lebih stabil menggunakan vercel) -->
-<!-- <img align="right" width="420" src="https://github-readme-stats.vercel.app/api?username=izagoto&show_icons=true&theme=radical" alt="GitHub stats" /> -->
+# Imanuel Zagoto — Portfolio Website
 
-<!-- GitHub stats utama -->
-<!-- <img align="right" src="https://github-readme-stats.vercel.app/api?username=izagoto&show_icons=true&theme=radical&count_private=true" alt="GitHub stats" width="420" /> -->
+Professional portfolio for Imanuel Zagoto, a Software Engineer focused on backend and full-stack development, automation, data processing, cybersecurity research, and digital forensics.
 
-📍 **Based in localhost**
+## Tech Stack
 
-<!-- <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHFxbXNzeHRzbTk3a2ExYnNhdW9iYzF1bmY2YTEzMzJrdzJqcHZ0aiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/IXnygGeB6LPPi/giphy.gif" alt="Futuristic Tech Animation" width="600"/>
-</p> -->
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React
 
-<p align="center">
-  <!-- <img src="https://raw.githubusercontent.com/izagoto/izagoto/main/klipartz.com.png" alt="Skull" width="200" /> -->
-</p>
+## Portfolio Structure
 
-![GitHub Contribution Snake Light](https://raw.githubusercontent.com/izagoto/izagoto/output/github-contribution-grid-snake.svg#gh-light-mode-only)
-![GitHub Contribution Snake Dark](https://raw.githubusercontent.com/izagoto/izagoto/output/github-contribution-grid-snake-dark.svg#gh-dark-mode-only)
+- Hero
+- About
+- Professional Experience
+- Selected Projects
+- Technical Skills
+- Education
+- Contact
 
----
+## Development
 
-<!-- <img src="https://github-readme-activity-graph.vercel.app/graph?username=izagoto&theme=react-dark&hide_border=true&area=true" alt="GitHub Activity Graph" width="100%" /> -->
+```bash
+npm install
+npm run dev
+```
+
+## Production Build
+
+```bash
+npm run build
+```
+
+The generated static site is written to `dist/` and can be deployed to Vercel, Netlify, or another static hosting provider.
+
+## Notes
+
+The project descriptions are intentionally presented at a professional-project level. Detailed implementation information for company projects is limited where confidentiality may apply.
