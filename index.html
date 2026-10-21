@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — Imanuel Zagoto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--c:#19d3ff;--cr:25,211,255;--bg:#020912;--text:#d8f6ff;--dim:#6fa6b8;--display:'Orbitron','Trebuchet MS',sans-serif;--body:'Rajdhani','Segoe UI',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at 50% 50%,transparent 45%,rgba(0,0,0,.65))}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+button{font-family:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.box{position:relative;border:1px solid rgba(var(--cr),.28);background:rgba(2,14,26,.62);backdrop-filter:blur(8px)}
+.box::before,.box::after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--c);pointer-events:none}
+.box::before{top:-2px;left:-2px;border-right:0;border-bottom:0}
+.box::after{bottom:-2px;right:-2px;border-left:0;border-top:0}
+
+/* Boot */
+#boot{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:24px;transition:opacity .9s}
+#boot.off{opacity:0;pointer-events:none}
+#boot h1{font-family:var(--display);font-weight:900;font-size:clamp(1.2rem,4.5vw,2.6rem);letter-spacing:.12em;text-align:center;color:var(--c);text-shadow:0 0 24px var(--c)}
+#bootlog{width:min(520px,100%);min-height:150px;font-family:var(--body);font-weight:500;color:var(--dim);font-size:.95rem;line-height:1.7}
+#bootlog b{color:var(--c);font-weight:600}
+.bbtns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;opacity:0;transition:opacity .6s}
+.bbtns.on{opacity:1}
+.btn{padding:11px 24px;background:rgba(var(--cr),.08);border:1px solid var(--c);font-family:var(--display);font-size:.75rem;letter-spacing:.14em;transition:background .2s,box-shadow .2s}
+.btn:hover{background:rgba(var(--cr),.25);box-shadow:0 0 22px rgba(var(--cr),.45)}
+
+/* HUD */
+#hud{position:fixed;inset:0;z-index:5;display:grid;grid-template-rows:auto 1fr auto;padding:16px clamp(14px,3vw,36px);gap:14px;pointer-events:none}
+#hud>*{pointer-events:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-family:var(--display);font-weight:900;letter-spacing:.28em;font-size:1rem;color:var(--c);text-shadow:0 0 14px rgba(var(--cr),.7)}
+.brand small{display:block;font-family:var(--body);font-weight:500;letter-spacing:.12em;font-size:.78rem;color:var(--dim)}
+.clock{text-align:right;font-family:var(--display);font-size:1.1rem;letter-spacing:.1em}
+.clock small{display:block;font-family:var(--body);font-size:.8rem;color:var(--dim);letter-spacing:.06em}
+.mid{display:grid;grid-template-columns:170px 1fr minmax(0,460px);gap:18px;min-height:0}
+nav{display:flex;flex-direction:column;gap:8px;align-self:start}
+nav button{background:rgba(2,14,26,.6);border:1px solid rgba(var(--cr),.25);padding:10px 14px;text-align:left;font-weight:600;letter-spacing:.06em;display:flex;justify-content:space-between;transition:all .2s}
+nav button:hover,nav button.on{border-color:var(--c);background:rgba(var(--cr),.16);box-shadow:inset 3px 0 0 var(--c)}
+nav button span{color:var(--dim);font-size:.8rem}
+.tele{margin-top:14px;padding:12px;font-size:.85rem;color:var(--dim)}
+.tele div{margin-bottom:9px}
+.tele i{display:block;height:4px;background:rgba(var(--cr),.15);margin-top:4px}
+.tele i em{display:block;height:100%;width:50%;background:var(--c);box-shadow:0 0 8px var(--c);transition:width 1s}
+.hero{align-self:end;padding-bottom:4px}
+.hero h2{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,2.6vw,2rem);letter-spacing:.06em;text-shadow:0 0 18px rgba(var(--cr),.6)}
+.hero p{color:var(--dim);max-width:44ch;margin-top:6px}
+#panel{align-self:stretch;overflow:auto;padding:22px;display:none;max-height:100%}
+#panel.on{display:block;animation:boot .5s steps(8)}
+@keyframes boot{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+#panel h3{font-family:var(--display);font-size:1rem;letter-spacing:.16em;color:var(--c);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+#panel h3 button{background:none;border:1px solid rgba(var(--cr),.4);width:28px;height:28px;font-size:1rem}
+#panel p{color:#b9dfeb;margin-bottom:12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.stats div{border:1px solid rgba(var(--cr),.25);padding:10px 12px}
+.stats b{font-family:var(--display);font-size:1.4rem;color:var(--c);display:block}
+.stats span{font-size:.85rem;color:var(--dim)}
+.item{border-left:2px solid var(--c);padding:6px 0 6px 14px;margin-bottom:16px;transition:background .2s,padding .2s}
+.item:hover{background:rgba(var(--cr),.08);padding-left:20px}
+.item h4{font-weight:600;font-size:1.1rem;letter-spacing:.04em}
+.item small{color:var(--c);font-size:.82rem;letter-spacing:.08em;display:block;margin-top:2px}
+.item .meta{color:var(--dim);font-size:.88rem;margin:4px 0 8px}
+.item ul{margin:0 0 4px 18px;color:#b9dfeb;font-size:.92rem;line-height:1.45}
+.item ul li{margin-bottom:5px}
+.item .tags{font-size:.78rem;color:var(--dim);letter-spacing:.04em;margin-top:8px}
+.sk{margin-bottom:14px}
+.sk div{display:flex;justify-content:space-between;font-weight:600;margin-bottom:4px}
+.sk i{display:block;height:6px;background:rgba(var(--cr),.14)}
+.sk i em{display:block;height:100%;width:0;background:linear-gradient(90deg,rgba(var(--cr),.4),var(--c));box-shadow:0 0 10px var(--c);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+form{display:grid;gap:10px}
+input,textarea{background:rgba(var(--cr),.05);border:1px solid rgba(var(--cr),.3);padding:10px 12px;color:var(--text);font:inherit;width:100%}
+input:focus,textarea:focus{outline:none;border-color:var(--c);box-shadow:0 0 14px rgba(var(--cr),.3)}
+textarea{min-height:90px;resize:vertical}
+
+/* Console */
+.cons{padding:12px 14px;max-width:760px;width:100%;margin:0 auto}
+#log{font-weight:500;font-size:.95rem;line-height:1.5;max-height:92px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;margin-bottom:8px}
+#log .u{color:var(--dim)}#log .j{color:var(--text)}#log .j::before{content:"Portfolio ▸ ";color:var(--c);font-weight:600}#log .u::before{content:"Anda ▸ "}
+.row{display:flex;gap:8px}
+#cmd{flex:1;width:100%}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chips button{background:none;border:1px solid rgba(var(--cr),.25);padding:3px 10px;font-size:.82rem;color:var(--dim)}
+.chips button:hover{color:var(--c);border-color:var(--c)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.links a.btn{display:inline-block;text-decoration:none;text-align:center}
+.links a.btn:hover{color:var(--text)}
+.item .links{margin-top:10px}
+
+@media(max-width:860px){
+  .mid{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:10px}
+  nav{flex-direction:row;overflow-x:auto;gap:6px}nav button{white-space:nowrap;flex:none}nav button span{display:none}
+  .tele{display:none}.hero{display:none}
+  #panel{position:fixed;left:12px;right:12px;bottom:150px;max-height:46vh;z-index:6}
+  .clock small{display:none}.brand small{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<div id="boot">
+  <h1>IMANUEL ZAGOTO</h1>
+  <div id="bootlog" aria-live="polite"></div>
+  <div class="bbtns" id="bbtns">
+    <button class="btn" id="go">MASUK</button>
+  </div>
+</div>
+
+<div id="hud">
+  <div class="top">
+    <div class="brand">IMANUEL ZAGOTO<small>Software Engineer · Backend & Full-Stack</small></div>
+    <div class="clock"><span id="time">00:00:00</span><small id="date"></small></div>
+  </div>
+
+  <div class="mid">
+    <div>
+      <nav aria-label="Modul">
+        <button data-cmd="home" class="on">Beranda <span>●</span></button>
+        <button data-cmd="tentang">Profil <span>01</span></button>
+        <button data-cmd="pengalaman">Pengalaman <span>02</span></button>
+        <button data-cmd="keahlian">Keahlian <span>03</span></button>
+      </nav>
+      <div class="box tele" aria-hidden="true">
+        <div>Inti reaktor<i><em id="t1"></em></i></div>
+        <div>Memori kreatif<i><em id="t2"></em></i></div>
+        <div>Jaringan<i><em id="t3"></em></i></div>
+      </div>
+    </div>
+    <div class="hero">
+      <h2 id="greet">Selamat datang.</h2>
+      <p>Navigasi lewat menu atau ketik perintah di bawah, misalnya “pengalaman” atau “tentang”.</p>
+    </div>
+    <section id="panel" class="box" aria-live="polite"></section>
+  </div>
+
+  <div class="box cons">
+    <div id="log"></div>
+    <div class="row">
+      <input id="cmd" placeholder="Ketik perintah, mis. pengalaman" autocomplete="off" aria-label="Perintah">
+    </div>
+    <div class="chips">
+      <button data-cmd="bantuan">bantuan</button><button data-cmd="linkedin">linkedin</button>
+      <button data-cmd="status">status sistem</button>
+      <button data-cmd="mode merah">mode merah</button><button data-cmd="mode biru">mode biru</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let mobile=innerWidth<=860;
+const OWNER='Imanuel Zagoto', TAG='Software Engineer';
+const LINKEDIN='https://www.linkedin.com/in/imanuel-zagoto-a0815030a/';
+const GITHUB='https://github.com/izagoto';
+const GITHUB_USER='izagoto';
+
+/* ---------- 3D: reaktor holografik ---------- */
+const renderer=new THREE.WebGLRenderer({canvas:$('#bg'),antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(55,1,.1,100);
+camera.position.z=9;
+const mats=[], G=new THREE.Group(); scene.add(G);
+const mk=(o)=>{const m=new THREE.MeshBasicMaterial(Object.assign({color:0x19d3ff,transparent:true},o));mats.push(m);return m};
+const core=new THREE.Mesh(new THREE.IcosahedronGeometry(.85,1),mk({wireframe:true,opacity:.9}));
+const glowCore=new THREE.Mesh(new THREE.IcosahedronGeometry(.42,0),mk({opacity:.95}));
+G.add(core,glowCore);
+// glow sprite
+const cv=document.createElement('canvas');cv.width=cv.height=128;
+const cx=cv.getContext('2d'),gr=cx.createRadialGradient(64,64,0,64,64,64);
+gr.addColorStop(0,'rgba(255,255,255,.9)');gr.addColorStop(.25,'rgba(255,255,255,.35)');gr.addColorStop(1,'rgba(255,255,255,0)');
+cx.fillStyle=gr;cx.fillRect(0,0,128,128);
+const sm=new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cv),color:0x19d3ff,blending:THREE.AdditiveBlending,transparent:true,depthWrite:false});
+const glow=new THREE.Sprite(sm);glow.scale.set(5,5,1);G.add(glow);
+// cincin
+const rings=[[1.6,.025,0],[2.1,.018,1],[2.7,.03,2]].map(([r,t,i])=>{
+  const m=new THREE.Mesh(new THREE.TorusGeometry(r,t,8,120),mk({opacity:.75}));
+  m.rotation.set(i*1.1,i*.7,0);G.add(m);return m;
+});
+// cincin tanda ukur
+const tp=[];for(let i=0;i<180;i++){const a=i/180*Math.PI*2,l=i%5?3.28:3.42;tp.push(Math.cos(a)*3.2,Math.sin(a)*3.2,0,Math.cos(a)*l+0,Math.sin(a)*l,0)}
+const tg=new THREE.BufferGeometry();tg.setAttribute('position',new THREE.Float32BufferAttribute(tp,3));
+const lm=new THREE.LineBasicMaterial({color:0x19d3ff,transparent:true,opacity:.55});
+const ticks=new THREE.LineSegments(tg,lm);ticks.rotation.x=.35;G.add(ticks);
+// partikel
+const N=1400,pp=new Float32Array(N*3);
+for(let i=0;i<N;i++){const r=5+Math.random()*22,a=Math.random()*6.283,b=Math.acos(2*Math.random()-1);
+  pp[i*3]=r*Math.sin(b)*Math.cos(a);pp[i*3+1]=r*Math.sin(b)*Math.sin(a);pp[i*3+2]=r*Math.cos(b)}
+const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+const pm=new THREE.PointsMaterial({color:0x19d3ff,size:.06,transparent:true,opacity:.7});
+const pts=new THREE.Points(pg,pm);scene.add(pts);
+const grid=new THREE.GridHelper(60,60,0x19d3ff,0x19d3ff);grid.position.y=-4.2;grid.material.transparent=true;grid.material.opacity=.12;scene.add(grid);
+
+function resize(){const w=innerWidth,h=innerHeight;mobile=w<=860;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();setTarget()}
+let tx=0,ty=0,ts=1,panelOpen=false;
+function setTarget(){ts=mobile?.6:1;tx=panelOpen&&!mobile?-.3:(mobile?0:.2);ty=mobile?(panelOpen?2.2:1.2):0.2}
+addEventListener('resize',resize);
+let mx=0,my=0,kick=0,speed=1;
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+const clk=new THREE.Clock();
+(function loop(){
+  const t=clk.getElapsedTime();
+  if(!reduce){
+    core.rotation.x=t*.4;core.rotation.y=t*.6;glowCore.rotation.y=-t;
+    rings.forEach((r,i)=>{r.rotation.z+=.004*(i+1)*speed;r.rotation.x+=.002*(i%2?-1:1)*speed});
+    ticks.rotation.z=-t*.12*speed;pts.rotation.y=t*.01;
+  }
+  kick*=.92;const s=ts*(1+kick*.18)*(1+Math.sin(t*2)*.015);
+  G.scale.setScalar(s);
+  G.position.x+=(tx-G.position.x)*.06;G.position.y+=(ty-G.position.y)*.06;
+  G.rotation.y+=((mx*.7)-G.rotation.y)*.04;G.rotation.x+=((my*.5)-G.rotation.x)*.04;
+  sm.opacity=.75+Math.sin(t*3)*.12+kick*.2;
+  renderer.render(scene,camera);requestAnimationFrame(loop);
+})();
+resize();
+
+function theme(hex,rgb){
+  document.documentElement.style.setProperty('--c',hex);document.documentElement.style.setProperty('--cr',rgb);
+  const c=new THREE.Color(hex);mats.forEach(m=>m.color.copy(c));lm.color.copy(c);pm.color.copy(c);sm.color.copy(c);
+  grid.material.color.copy(c);
+}
+
+/* ---------- Konten modul ---------- */
+const MOD={
+ tentang:()=>`<h3>PROFIL <button data-cmd="home" aria-label="Tutup">×</button></h3>
+  <p>Saya Software Engineer dengan fokus sistem backend dan pengembangan web full-stack. Di backend, saya memakai Python dan Go untuk membangun layanan, REST API, dan solusi otomasi. Untuk full-stack, saya menggunakan PHP, Laravel, dan JavaScript untuk fitur end-to-end.</p>
+  <p>Di luar pekerjaan, saya memperluas stack lewat proyek pribadi dengan Node.js, Express.js, dan React.js. Tertarik membangun software yang praktis, belajar teknologi baru, dan menyelesaikan masalah teknis.</p>
+  <p style="color:var(--c);font-family:var(--display);font-size:.82rem;letter-spacing:.12em;margin-bottom:10px">STACK TEKNIS</p>
+  <div class="stats"><div><b>Backend</b><span>Go · Python · FastAPI · REST API · Otomasi</span></div><div><b>Full-Stack</b><span>PHP · Laravel · JavaScript</span></div><div><b>Forensik</b><span>Android · iOS · Bukti Digital · Chain of Custody</span></div><div><b>Eksplorasi</b><span>Node.js · Express.js · React.js</span></div></div>
+  <div class="links"><a class="btn" href="${LINKEDIN}" target="_blank" rel="noopener noreferrer">LINKEDIN</a><a class="btn" href="${GITHUB}" target="_blank" rel="noopener noreferrer">GITHUB</a></div>`,
+ pengalaman:()=>`<h3>PENGALAMAN <button data-cmd="home" aria-label="Tutup">×</button></h3>
+  <p class="meta" style="margin-top:0">PT Solusi Intek Indonesia · Kontrak · 4 thn 1 bln · Bekasi, Jawa Barat</p>
+  <div class="item"><h4>Peneliti Keamanan Siber</h4><small>NOV 2025 – SEKARANG · 1 THN</small>
+  <p class="meta">Forensik digital: akuisisi, pemrosesan, analisis, dan investigasi bukti.</p>
+  <ul>
+  <li>Platform riset akuisisi dan analisis forensik data Android &amp; iOS.</li>
+  <li>Manajemen kasus bukti digital, verifikasi integritas, dan Chain of Custody.</li>
+  <li>Korelasi bukti dari banyak sumber dan komputasi terdistribusi untuk analisis skala besar.</li>
+  <li>Alur otomatis untuk pemrosesan bukti dan pelaporan.</li>
+  </ul>
+  <p class="tags">Android · iOS · Forensik Mobile · Chain of Custody · Metadata · Komputasi Terdistribusi</p></div>
+  <div class="item"><h4>Software Engineer</h4><small>OKT 2022 – OKT 2025 · 3 THN 1 BLN</small>
+  <p class="meta">Sistem backend, aplikasi web, otomasi, dan pemrosesan data untuk operasional &amp; monitoring.</p>
+  <ul>
+  <li>Layanan backend Go untuk monitoring dan manajemen perangkat (telemetri, otomasi operasional).</li>
+  <li>Pipeline media intelligence: web crawling, analisis berbasis NLP, dan analisis tren.</li>
+  <li>Aplikasi Laravel untuk manajemen dokumen dan alur bisnis (pendanaan, work order).</li>
+  <li>Platform e-procurement: manajemen vendor, kontrol anggaran, audit trail.</li>
+  <li>Integrasi API dan basis data untuk aplikasi full-stack yang skalabel.</li>
+  </ul>
+  <p class="tags">Go · Python · Laravel · FastAPI · REST API · NLP · Integrasi Sistem</p></div>`,
+ keahlian:()=>`<h3>KEAHLIAN <button data-cmd="home" aria-label="Tutup">×</button></h3>
+  <p class="meta" style="margin-top:0">Backend &amp; full-stack dari pengalaman Software Engineer; forensics &amp; mobile dari peran saat ini. Persentase perkiraan relatif, bukan sertifikasi.</p>`+
+  [['Go · Backend &amp; Monitoring',88],['Python · API &amp; Automation',86],['PHP · Laravel · Full-Stack',85],['REST API · System Integration',84],['JavaScript · Web',81],['Digital &amp; Mobile Forensics',78],['NLP · Data Processing',76],['Node.js · Express · React',68]]
+  .map(([n,v])=>`<div class="sk"><div><span>${n}</span><span>${v}%</span></div><i><em data-w="${v}"></em></i></div>`).join(''),
+};
+const NAMES={tentang:'Profil',pengalaman:'Pengalaman',keahlian:'Keahlian'};
+
+function show(k){
+  const p=$('#panel');
+  if(!k){p.classList.remove('on');panelOpen=false}
+  else{p.innerHTML=MOD[k]();p.classList.remove('on');void p.offsetWidth;p.classList.add('on');panelOpen=true;
+    setTimeout(()=>$$('[data-w]').forEach(e=>e.style.width=e.dataset.w+'%'),60);}
+  $$('nav button').forEach(b=>b.classList.toggle('on',(b.dataset.cmd==='home'&&!k)||b.dataset.cmd===k));
+  kick=1;setTarget();
+}
+
+/* ---------- Konsol & perintah ---------- */
+const log=$('#log');
+function line(c,t){const d=document.createElement('div');d.className=c;d.textContent=t;log.appendChild(d);while(log.children.length>4)log.firstChild.remove()}
+function reply(t){line('j',t);kick=1}
+const R=[
+ [/(tentang|profil|about|siapa)/,()=>{show('tentang');return'Menampilkan profil. '+OWNER+', '+TAG+' — backend dan full-stack web.'}],
+ [/(pengalaman|experience|kerja|pekerjaan|karir)/,()=>{show('pengalaman');return'Menampilkan pengalaman kerja di PT Solusi Intek Indonesia.'}],
+ [/(keahlian|skill|kemampuan|teknologi)/,()=>{show('keahlian');return'Memuat keahlian: Go, Python, Laravel, forensics, dan stack terkait.'}],
+ [/(kontak|contact|hubungi)/,()=>'Menu kontak dinonaktifkan sementara. Tautan LinkedIn dan GitHub ada di modul Profil.'],
+ [/(linkedin|linked in)/,()=>{window.open(LINKEDIN,'_blank','noopener,noreferrer');return'Membuka LinkedIn '+OWNER+'.'}],
+ [/(github|git hub)/,()=>{window.open(GITHUB,'_blank','noopener,noreferrer');return'Membuka GitHub @'+GITHUB_USER+'.'}],
+ [/(home|beranda|tutup|kembali|close)/,()=>{show(null);return'Kembali ke beranda.'}],
+ [/(merah|red)/,()=>{theme('#ff3b3b','255,59,59');return'Mode protokol merah aktif.'}],
+ [/(biru|blue|normal)/,()=>{theme('#19d3ff','25,211,255');return'Mode standar dipulihkan.'}],
+ [/(emas|gold)/,()=>{theme('#ffc93c','255,201,60');return'Mode emas aktif.'}],
+ [/(status|sistem)/,()=>{return'Seluruh sistem berjalan normal. Inti reaktor stabil pada seratus persen.'}],
+ [/(waktu|jam|time)/,()=>'Sekarang pukul '+new Date().toLocaleTimeString('id-ID')+'.'],
+ [/(cepat|fast)/,()=>{speed=3;return'Rotasi reaktor dipercepat.'}],
+ [/(pelan|lambat|slow)/,()=>{speed=1;return'Rotasi reaktor kembali normal.'}],
+ [/(halo|hai|hello|imanuel)/,()=>'Halo. Ada yang bisa saya bantu?'],
+ [/(bantuan|help|perintah)/,()=>'Coba: tentang, pengalaman, keahlian, linkedin, github, status sistem, mode merah, mode emas, mode biru, cepat, pelan.']
+];
+function run(txt){
+  txt=txt.trim().toLowerCase();if(!txt)return;line('u',txt);
+  const m=R.find(([re])=>re.test(txt));
+  setTimeout(()=>reply(m?m[1]():'Perintah tidak dikenali. Ketik “bantuan” untuk daftar perintah.'),260);
+}
+$('#cmd').addEventListener('keydown',e=>{if(e.key==='Enter'){run(e.target.value);e.target.value=''}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-cmd]');if(b)run(b.dataset.cmd)});
+
+/* Jam & telemetri */
+const tick=()=>{const d=new Date();$('#time').textContent=d.toLocaleTimeString('id-ID',{hour12:false});
+  $('#date').textContent=d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})};
+tick();setInterval(tick,1000);
+const tel=()=>['#t1','#t2','#t3'].forEach((s,i)=>$(s).style.width=(i?35+Math.random()*50:88+Math.random()*10)+'%');
+tel();setInterval(tel,1400);
+
+/* ---------- Urutan boot ---------- */
+const lines=['<b>▸</b> Memuat scene 3D ........ OK','<b>▸</b> Menyinkronkan modul portfolio ........ OK','<b>▸</b> Antarmuka siap ........ OK'];
+const bl=$('#bootlog');let i=0;
+const iv=setInterval(()=>{if(i<lines.length){bl.insertAdjacentHTML('beforeend','<div>'+lines[i++]+'</div>')}else{clearInterval(iv);$('#bbtns').classList.add('on');$('#go').focus()}},reduce?0:420);
+function start(){
+  $('#boot').classList.add('off');kick=1.5;
+  const h=new Date().getHours(),s=h<11?'Selamat pagi':h<15?'Selamat siang':h<19?'Selamat sore':'Selamat malam';
+  $('#greet').textContent=s+', selamat datang.';
+  setTimeout(()=>reply(s+'. Portfolio '+OWNER+'. Ketik “pengalaman” atau “tentang” untuk mulai.'),700);
+}
+$('#go').onclick=()=>start();
+})();
+</script>
+</body>
+</html>
